@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   postgres:
@@ -7,6 +7,8 @@ services:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
     volumes:
       - 'postgres:/var/lib/postgresql/data'
+    ports:
+      - "5432:5432"
 
   app:
     depends_on:
@@ -17,8 +19,7 @@ services:
       - '3000:3000'
     volumes:
       - '.:/DevOneBitCode'
-    volumes_from:
-    - box
+
 
   box:
     image: busybox
